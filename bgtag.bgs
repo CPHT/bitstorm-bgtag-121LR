@@ -74,9 +74,14 @@ event system_boot(major ,minor ,patch ,build ,ll_version ,protocol_version ,hw )
 	# set custom advertisement data
     call gap_set_adv_data(0, 22, adv_data(0:22))
 
-	# Set advertising rate to min 320ms, max 500ms, all three channels
-	call gap_set_adv_parameters($200, $320, 7)
+	##### Set advertising rate to min 320ms, max 500ms, all three channels
+	#####call gap_set_adv_parameters($200, $320, 7)
 
+	# Set advertising rate to min 980ms, max 1020ms, all three channels'
+	# Should center on 1000ms + random 20ms (per BT spec)
+	call gap_set_adv_parameters($620, $660, 7)
+	
+	
 	#set to advertising mode (use gap_user_data for iBeacon, gap_general_discoverable for regular)	
 	#call gap_set_mode(gap_user_data,gap_undirected_connectable)
 	call gap_set_mode(gap_general_discoverable,gap_undirected_connectable)
